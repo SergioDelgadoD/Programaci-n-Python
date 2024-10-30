@@ -1,0 +1,63 @@
+'''
+Desarrollar un código que emule una partida del famoso juego,
+entre la máquina y el usuario.
+El código debe tener las siguientes características:
+1.El programa le pide al usuario que elija entre las tres posibilidades
+2.Sacar un mensaje de error si el usuario no ha introducido bien su respuesta
+3.El programa devuelve una frase diciendo qué ha sacado la máquina y si gana o pierde el usuario
+4.El programa se ejecuta constantemente. (pregunta de nuevo cuando la partida ha terminado)
+5.Se han de emplear (funciones, bucles, condicionales, try/except,)
+6.Voluntario (llevar el conteo de las partidas ganadas cada uno y se muestre en cada ronda)
+'''
+import random
+
+# Función para obtener la elección de la máquina
+def eleccion_maquina():
+    opciones = ["piedra", "papel", "tijera"]
+    return random.choice(opciones)
+
+# Función para determinar el ganador
+def determinar_ganador(usuario, maquina):
+    if usuario == maquina:
+        return "Empate"
+    elif (usuario == "piedra" and maquina == "tijera") or \
+         (usuario == "papel" and maquina == "piedra") or \
+         (usuario == "tijera" and maquina == "papel"):
+        return "¡Ganaste!"
+    else:
+        return "Perdiste"
+
+# Función principal del juego
+def jugar():
+    victorias_usuario = 0
+    victorias_maquina = 0
+    while True:
+        print("\nElige entre piedra, papel o tijera:")
+        usuario = input("Tu elección: ").lower()
+        if usuario not in ["piedra", "papel", "tijera"]:
+            print("Entrada no válida. Por favor, elige de nuevo.")
+            continue
+        
+        maquina = eleccion_maquina()
+        print(f"La máquina eligió: {maquina}")
+        
+        resultado = determinar_ganador(usuario, maquina)
+        print(resultado)
+        
+        if resultado == "¡Ganaste!":
+            victorias_usuario += 1
+        elif resultado == "Perdiste":
+            victorias_maquina += 1
+
+        print(f"Puntuación: Usuario {victorias_usuario} - Máquina {victorias_maquina}")
+
+        # Preguntar al usuario si quiere jugar de nuevo
+        jugar_de_nuevo = input("¿Quieres jugar de nuevo? (s/n): ").lower()
+        if jugar_de_nuevo != "s":
+            break
+
+# Manejo de errores y ejecución del juego
+try:
+    jugar()
+except Exception as e:
+    print(f"Se ha producido un error: {e}")

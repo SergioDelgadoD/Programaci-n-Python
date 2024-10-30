@@ -27,5 +27,5 @@ chop(mi_lista)
 print("Después de chop:", mi_lista)
 
 # Usando la función middle
-nueva_lista = middle([1, 2, 3, 4, 5])
+nueva_lista = middle([1,2,3])
 print("Lista middle:", nueva_lista)
