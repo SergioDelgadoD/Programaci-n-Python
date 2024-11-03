@@ -9,55 +9,67 @@ El código debe tener las siguientes características:
 5.Se han de emplear (funciones, bucles, condicionales, try/except,)
 6.Voluntario (llevar el conteo de las partidas ganadas cada uno y se muestre en cada ronda)
 '''
-import random
+import random 
 
-# Función para obtener la elección de la máquina
+# Función elección máquina
 def eleccion_maquina():
     opciones = ["piedra", "papel", "tijera"]
     return random.choice(opciones)
 
+# Función eleccion jugador
+def eleccion_jugador(): 
+    while True:
+        print ("Introduce 'piedra', 'papel' o 'tijeras':")
+        jugador = input("Elige opción: ").lower()   
+        if jugador not in ["piedra", "papel", "tijera"]:
+            print ("Opción no válida: " + str(jugador) + "\n")          
+            continue
+        else:
+            break
+    return jugador
+
 # Función para determinar el ganador
-def determinar_ganador(usuario, maquina):
-    if usuario == maquina:
+def determinar_ganador(jugador, maquina):
+    if jugador == maquina:
         return "Empate"
-    elif (usuario == "piedra" and maquina == "tijera") or \
-         (usuario == "papel" and maquina == "piedra") or \
-         (usuario == "tijera" and maquina == "papel"):
+    elif (jugador == "piedra" and maquina == "tijera") or \
+         (jugador == "papel" and maquina == "piedra") or \
+         (jugador == "tijera" and maquina == "papel"):
         return "¡Ganaste!"
     else:
         return "Perdiste"
 
-# Función principal del juego
-def jugar():
-    victorias_usuario = 0
-    victorias_maquina = 0
+def main():
+    partidas = 0 
+    ganajugador = 0
+    ganamaquina = 0
+
     while True:
-        print("\nElige entre piedra, papel o tijera:")
-        usuario = input("Tu elección: ").lower()
-        if usuario not in ["piedra", "papel", "tijera"]:
-            print("Entrada no válida. Por favor, elige de nuevo.")
-            continue
-        
+        jugador = eleccion_jugador()
         maquina = eleccion_maquina()
-        print(f"La máquina eligió: {maquina}")
-        
-        resultado = determinar_ganador(usuario, maquina)
-        print(resultado)
-        
+    
+        print ("La máquina eligió: " + str(maquina))
+        resultado = (determinar_ganador (jugador, maquina))
+        print(resultado + "\n")
+        partidas += 1
+
         if resultado == "¡Ganaste!":
-            victorias_usuario += 1
-        elif resultado == "Perdiste":
-            victorias_maquina += 1
+            ganajugador += 1
+        if resultado == "Perdiste":
+            ganamaquina += 1
 
-        print(f"Puntuación: Usuario {victorias_usuario} - Máquina {victorias_maquina}")
-
+        print ("Total de partidas jugadas: " + str(partidas))
+        print ("---------------------------")
+        print ("Partidas ganadas Jugador: " + str(ganajugador))
+        print ("Partidas ganadas Máquina: " + str(ganamaquina))
+        
         # Preguntar al usuario si quiere jugar de nuevo
-        jugar_de_nuevo = input("¿Quieres jugar de nuevo? (s/n): ").lower()
-        if jugar_de_nuevo != "s":
+        print (str(opcion := input("\n¿Otra partida? (s/n): ").lower()))
+        if opcion  == 'n':
             break
 
 # Manejo de errores y ejecución del juego
 try:
-    jugar()
+    main()
 except Exception as e:
-    print(f"Se ha producido un error: {e}")
+    print("Se ha producido un error: " + str(e))
