@@ -1,51 +1,24 @@
 '''
-Escribe un programa que categorice cada mensaje de correo según el día de la semana 
-en que se realizó la confirmación. Para hacer esto, busca líneas que comiencen con "From", 
-luego busca la tercera palabra y manten un conteo de cada uno de los días de la semana. 
-Al final del programa, imprime el contenido de tu diccionario (el orden no importa).
-Línea de muestra:
-From stephen.marquard@uct.ac.za Sat Jan 5 09:14:16 2008
-
-Ejecución de la muestra:
-python dow.py
-Enter a file name: mbox-short.txt
-{'Fri': 20, 'Thu': 6, 'Sat': 1}  
+Escribe un programa que solicita al usuario una lista de números e imprime el máximo y el mínimo 
+de los números al final cuando el usuario ingresa "listo". Escribe el programa para almacenar los números 
+que el usuario ingresa en una lista y use las funciones "max()" y "min()" para calcular los números máximo y mínimo 
+después de que se complete el ciclo.
+Enter a number: 6
+Enter a number: 2
+Enter a number: 9
+Enter a number: 3
+Enter a number: 5
+Enter a number: done
+Maximum: 9.0
+Minimum: 2.0
 '''
-def main():
-    # Solicitar el nombre del archivo
-    nombre_archivo = input("Introduce el nombre del archivo: ")
-    try: 
-        archivo = open(nombre_archivo)
+lista = []
+
+while (str(next := input("introduce número: "))!='listo'):
+    try:
+        lista.append(float(next))
     except:
-        print("No se puede abrir el archivo:", nombre_archivo)
-    
-    # Inicializar un diccionario para contar los días de la semana
-    conteo_dias = {}
+        print(f"Invalid number: {next}\n")
 
-    # Leer cada línea del archivo
-    for linea in archivo:
-        # Eliminar espacios en blanco al inicio y al final de la línea
-        linea = linea.strip()
-        
-        # Verificar si la línea empieza con "From "
-        if linea.startswith('From '):
-            # Dividir la línea en palabras
-            palabras = linea.split()
-        
-            # Buscar la tercera palabra (el día de la semana)
-            dia = palabras[2]
-        
-            # Incrementar el contador en el diccionario
-            if dia not in conteo_dias:
-                conteo_dias[dia] = 1
-            else:
-                conteo_dias[dia] += 1
-    
-    # Cerrar el archivo
-    archivo.close()
-
-    # Imprimir el contenido del diccionario
-    for dia in conteo_dias.items():
-        print (dia)#, conteo)
-
-main()
+print("Mínimo: "+str(min(lista)))
+print("Máximo: "+str(max(lista)))
