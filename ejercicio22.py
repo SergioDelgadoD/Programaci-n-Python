@@ -5,6 +5,7 @@ Al final del programa, imprime el contenido de tu diccionario.
 
 python schoolcount.py Enter a file name: mbox-short.txt {'media.berkeley.edu': 4, 'uct.ac.za': 6, 'umich.edu': 7, 
 'gmail.com': 1, 'caret.cam.ac.uk': 1, 'iupui.edu': 8}
+<<<<<<< HEAD
 '''
 def main():
     # Solicitar el nombre del archivo
@@ -46,3 +47,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+=======
+'''
+>>>>>>> 0fe10e78ab53b1fd79879686fad9e20dccf87a10

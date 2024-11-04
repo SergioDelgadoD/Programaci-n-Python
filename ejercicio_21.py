@@ -4,6 +4,7 @@ utilizando un bucle máximo para encontrar quién tiene más mensajes e imprime 
 
 Enter a file name: mbox-short.txt cwen@iupui.edu 5
 
+<<<<<<< HEAD
 Enter a file name: mbox.txt zqian@umich.edu 195'''
 
 def main():
@@ -59,3 +60,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+=======
+Enter a file name: mbox.txt zqian@umich.edu 195'''
+>>>>>>> 0fe10e78ab53b1fd79879686fad9e20dccf87a10
