@@ -60,6 +60,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-=======
-Enter a file name: mbox.txt zqian@umich.edu 195'''
->>>>>>> 0fe10e78ab53b1fd79879686fad9e20dccf87a10
+
